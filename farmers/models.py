@@ -8,6 +8,9 @@ class SellerProfile(models.Model):
     last_name = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
     shop_name = models.CharField(max_length=50)
+    delivery_fee = models.DecimalField(max_digits=3, decimal_places=2)
+    latitude = models.FloatField(min_value=-90, max_value=90)
+    longitude = models.FloatField(min_value=-180, max_value=180)
 
     def __str__(self):
         return self.shop_name

@@ -1,5 +1,5 @@
 from django.db import models
-# from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -8,9 +8,9 @@ class SellerProfile(models.Model):
     last_name = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
     shop_name = models.CharField(max_length=50)
-    delivery_fee = models.DecimalField(max_digits=3, decimal_places=2)
-    # latitude = models.FloatField(validators=[MinValueValidator(-90), MaxValueValidator(90)])
-    # longitude = models.FloatField(validators=[MinValueValidator(-180), MaxValueValidator(180)])
+    delivery_fee = models.DecimalField(max_digits=3, decimal_places=2, default=0)
+    latitude = models.FloatField(validators=[MinValueValidator(-90), MaxValueValidator(90)], default=0)
+    longitude = models.FloatField(validators=[MinValueValidator(-180), MaxValueValidator(180)], default=0)
 
     def __str__(self):
         return self.shop_name

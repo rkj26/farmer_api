@@ -21,6 +21,9 @@ from farmers import views
 router = routers.DefaultRouter()
 router.register(r'crop_search', views.InventoryView, 'inventory')
 router.register(r'seller_search', views.SellerView, 'seller')
+router.register(r'user_search', views.UserView, 'user')
+router.register(r'cart_search', views.CartView, 'cart')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

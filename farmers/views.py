@@ -3,8 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 from rest_framework import viewsets  # add this
-from .serializers import SellerSerializer, InventorySerializer  # add this
-from .models import SellerProfile, Inventory  # add this
+from .serializers import SellerSerializer, InventorySerializer, UserSerializer, CartSerializer  # add this
+from .models import SellerProfile, Inventory, UserProfile, Cart  # add this
 from rest_framework import filters
 
 
@@ -29,6 +29,30 @@ class SellerView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = SellerProfile.objects.all()
+        id_ = self.request.query_params.get('id', None)
+        if id is not None:
+            queryset = queryset.filter(id=id_)
+        return queryset
+
+
+class UserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = UserProfile.objects.all()
+
+    def get_queryset(self):
+        queryset = UserProfile.objects.all()
+        id_ = self.request.query_params.get('id', None)
+        if id is not None:
+            queryset = queryset.filter(id=id_)
+        return queryset
+
+
+class CartView(viewsets.ModelViewSet):
+    serializer_class = CartSerializer
+    queryset = Cart.objects.all()
+
+    def get_queryset(self):
+        queryset = Cart.objects.all()
         id_ = self.request.query_params.get('id', None)
         if id is not None:
             queryset = queryset.filter(id=id_)

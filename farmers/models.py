@@ -49,3 +49,7 @@ class OrderHistory(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=6)
     quantity = models.DecimalField(decimal_places=3, max_digits=10)
     status = models.BooleanField(default=True)
+
+class Image(models.Model):
+    url = models.TextField(default='')
+

@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.shortcuts import render
 from rest_framework import viewsets  # add this
 from .serializers import SellerSerializer, InventorySerializer, UserSerializer, CartSerializer, \
-    OrderHistorySerializer  # add this
-from .models import SellerProfile, Inventory, UserProfile, Cart, OrderHistory  # add this
+    OrderHistorySerializer, ImageSerializer  # add this
+from .models import SellerProfile, Inventory, UserProfile, Cart, OrderHistory, Image  # add this
 from rest_framework import filters
 from django.contrib.gis.measure import D
 from django.contrib.gis.db.models.functions import Distance
@@ -84,3 +84,7 @@ class OrderHistoryView(viewsets.ModelViewSet):
         if id_ is not None:
             queryset = queryset.filter(seller=id_)
         return queryset
+
+class ImageView(viewsets.ModelViewSet):
+    serializer_class = ImageSerializer
+    queryset = Image.objects.all()

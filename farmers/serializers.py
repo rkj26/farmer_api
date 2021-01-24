@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import SellerProfile, Inventory, UserProfile, Cart
+from .models import SellerProfile, Inventory, UserProfile, Cart, OrderHistory
 
 
 class SellerSerializer(serializers.ModelSerializer):
@@ -23,4 +23,10 @@ class UserSerializer(serializers.ModelSerializer):
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
+        fields = '__all__'
+
+
+class OrderHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderHistory
         fields = '__all__'

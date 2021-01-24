@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import SellerProfile, Inventory, UserProfile, Cart
+from .models import SellerProfile, Inventory, UserProfile, Cart, OrderHistory
 
 
 # Register your models here.
 class SellerAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'shop_name', 'address', 'longitude', 'latitude')
+    list_display = ('first_name', 'last_name', 'shop_name', 'address','location')
 
 
 class InventoryAdmin(admin.ModelAdmin):
@@ -12,14 +12,17 @@ class InventoryAdmin(admin.ModelAdmin):
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'address', 'longitude', 'latitude')
+    list_display = ('first_name', 'last_name', 'address', 'location')
 
 
 class CartAdmin(admin.ModelAdmin):
     list_display = ('user', 'seller', 'item', 'price', 'quantity')
 
+class OrderHistoryAdmin(admin.ModelAdmin):
+    list_display = ('when', 'user', 'seller', 'item', 'price', 'quantity', 'status')
 
 admin.site.register(SellerProfile, SellerAdmin)
 admin.site.register(Inventory, InventoryAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(UserProfile, UserAdmin)
+admin.site.register(OrderHistory, OrderHistoryAdmin)

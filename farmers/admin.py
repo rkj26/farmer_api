@@ -22,7 +22,7 @@ class OrderHistoryAdmin(admin.ModelAdmin):
     list_display = ('when', 'user', 'seller', 'item', 'price', 'quantity', 'status')
 
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('url',)
+    list_display = ('url','keyword')
 
 admin.site.register(SellerProfile, SellerAdmin)
 admin.site.register(Inventory, InventoryAdmin)

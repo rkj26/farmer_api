@@ -51,5 +51,6 @@ class OrderHistory(models.Model):
     status = models.BooleanField(default=True)
 
 class Image(models.Model):
+    keyword = models.CharField(max_length=20, default='')
     url = models.TextField(default='')
 

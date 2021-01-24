@@ -88,3 +88,9 @@ class OrderHistoryView(viewsets.ModelViewSet):
 class ImageView(viewsets.ModelViewSet):
     serializer_class = ImageSerializer
     queryset = Image.objects.all()
+    def get_queryset(self):
+        queryset = Image.objects.all()
+        keyword = self.request.query_params.get('keyword', None)
+        if keyword:
+            queryset = queryset.filter(keyword = keyword)
+        return queryset

@@ -79,11 +79,15 @@ class OrderHistoryView(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = OrderHistory.objects.all()
         id_ = self.request.query_params.get('id', None)
+        item = self.request.query_params.get('item', None)
         today = datetime.now().date()+timedelta(1)
         queryset = OrderHistory.objects.filter(when__gte=today - timedelta(days=26), when__lt=today)
         if id_ is not None:
             queryset = queryset.filter(seller=id_)
+        if item:
+            queryset = queryset.filter(item=item)
         return queryset
+
 
 class ImageView(viewsets.ModelViewSet):
     serializer_class = ImageSerializer

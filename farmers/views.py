@@ -9,8 +9,10 @@ from .models import SellerProfile, Inventory, UserProfile, Cart, OrderHistory, I
 from rest_framework import filters
 from django.contrib.gis.measure import D
 from django.contrib.gis.db.models.functions import Distance
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos import Point, GEOSGeometry
 from datetime import datetime, timedelta, time
+from rest_framework import status
+from rest_framework.response import Response
 
 
 class InventoryView(viewsets.ModelViewSet):
@@ -87,6 +89,20 @@ class OrderHistoryView(viewsets.ModelViewSet):
         if item:
             queryset = queryset.filter(item=item)
         return queryset
+
+    def create(self, request, *args, **kwargs):
+        id_ = self.request.data['seller']
+        item = self.request.data['item']
+        quantity = self.request.data['quantity']
+        queryset = Inventory.objects.filter(seller=id_).filter(crops=item)
+        object = queryset[0]
+        object.quantity = float(object.quantity) - float(quantity)
+        object.save(update_fields=["quantity"])
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class ImageView(viewsets.ModelViewSet):

@@ -1,10 +1,7 @@
 
 # About
 - Git Repository is used for a Heroku APP which helps with database and corresponding REST APIs.
-
-# Disclaimer
-- There is currently no authentication required to access the endpoints.
-- DO NOT ATTEMPT A DDOS ATTACK with numerous requests
+- Made for Hack Cambridge 2021 - Agrio app [Github](https://github.com/VasundharaAgarwal/HackCam21) [Devpost](https://devpost.com/software/agriconnect-l36kei)
 
 # Endpoints
 - https://farmer-api-cam.herokuapp.com/api/v1/
@@ -28,3 +25,6 @@
 - Hold Seller's Information
 - Image Endpoint for data analysis updates.
 
+# Further Improvements
+- Authentication and Encryption of data transfer
+- Move to NoSQL from Relational database.
